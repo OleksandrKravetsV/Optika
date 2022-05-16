@@ -1,0 +1,68 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Homework List</title>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+          crossorigin="anonymous" />
+</head>
+
+<body>
+
+<center>
+<div class="container mt-5">
+    <a th:href="@{/}">return to main</a>
+    <br>
+    <h1>Product Page</h1>
+
+<div sec:authorize="hasAuthority('ADMIN')">
+    <form  method="post" enctype="multipart/form-data">
+<!--                add file-->
+<!--                <input type="file" name="file" id="customFile">-->
+<!--                <label class="custom-file-label" for="customFile">Choose file</label>-->
+        <input type="file" name="file" >
+        <input type="text" name="price" placeholder="price" />
+        <input type="text" name="description" placeholder="Description" />
+<!--        <textarea name="description"></textarea>-->
+<!--        <input style="white-space: pre-line" type="text" name="description" placeholder="Description" />-->
+        <button type="submit" class="btn btn-info ml-2">Добавить</button>
+
+    </form>
+</div>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th></th>
+            <th>price</th>
+            <th>description</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${products}">
+<!--            <td style="white-space: pre-line"> </td>-->
+            <td th:if="${product.filename == null   }" >
+                <img th:src="@{/images/no_Img.jpg}" />
+            </td>
+            <td th:if="${product.filename != null   }" >
+                <img th:src="@{/img/{filename}(filename = ${product.filename})}">
+            </td>
+               <td  th:text="${product.price}" > </td>
+            <td th:text="${product.description}" > </td>
+            <td>
+                <a  th:href="@{/buy/{id}(id=${product.id})}"  class="btn btn-info ml-2">Buy</a>
+                <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/edit/{id}(id=${product.id})}"  class="btn btn-info ml-2">Edit</a>
+                <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/deleteProduct(productId=${product.id})}" class="btn btn-danger ml-2">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+    </center>
+
+</body>
+</html>
