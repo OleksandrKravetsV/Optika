@@ -25,7 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .csrf().disable()
             .authorizeRequests()
             .antMatchers("/", "/registration", "/uploads/**", "/static/**", "/products").permitAll()
-//            .mvcMatchers("/user/**").hasRole("ADMIN")
+//                .antMatchers("/buy").anonymous()
             .anyRequest().authenticated()
             .and()
             .formLogin()
@@ -50,6 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring()
                 .antMatchers("/images/**")
                 .antMatchers("/img/**")
+//                .antMatchers("/buy")
 
         ;
 

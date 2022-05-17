@@ -1,12 +1,15 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
-<head>
-    <title>Spring Security Example </title>
-</head>
-<body>
+<!--<!DOCTYPE html>-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Spring Security Example </title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<center>-->
+<header th:insert="parts/common :: common" ></header>
 <center>
-    <a th:href="@{/}">return to main</a>
-    <br>
+<div>
+<!--    <a th:href="@{/}">return to main</a>-->
+<!--    <br>-->
     Login page
     <div th:if="${param.error}">
         Invalid username and password.
@@ -18,8 +21,11 @@
         <div><label> User Name : <input type="text" name="username"/> </label></div>
         <div><label> Password: <input type="password" name="password"/> </label></div>
         <div><input type="submit" value="Sign In"/></div>
+<!--        <div><input class="btn btn-primary" type="submit" value="Sign In"></div>-->
     </form>
-    <a href="/registration">Add new user</a>
+<!--    <a href="/registration">Add new user</a>-->
+    <a  th:href="@{/registration}" class="btn btn-light ml-2">Add new user</a>
+</div>
 </center>
-</body>
-</html>
+<!--</body>-->
+<!--</html>-->

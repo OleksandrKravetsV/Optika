@@ -25,7 +25,8 @@ public class RegistrationController {
     }
 
     @PostMapping("/registration")
-    public String addUser(@RequestParam("password2") String passwordConfirm, User user, BindingResult bindingResult, Model model) {
+                        //    @RequestParam("password2") String passwordConfirm, BindingResult bindingResult,
+    public String addUser( User user, Model model) {
         User userFromDB = userRepo.findByUsername(user.getUsername());
 
         if (userFromDB != null) {

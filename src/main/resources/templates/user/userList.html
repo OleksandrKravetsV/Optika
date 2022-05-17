@@ -1,38 +1,24 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" >
-<head>
-    <meta charset="UTF-8">
-    <title>User List</title>
-</head>
-<body>
-<center>
-    <a href="/">return main</a>
-    <br>
-    <br>
-    <br>
-    <table class="table table-bordered table-striped">
-        <thead>
-       Users list
-        <tr>
-            <th>Name</th>
-            <th>Role</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="user : ${users}">
-            <td th:text="${user.username}" />
-            <td th:text="${user.roles}" />
-            <td>
-<!--            <td><a href="/user/${user.id}">edit</a></td>-->
-            <a th:href="@{/editUser/{id}(id=${user.id})}">Edit</a>
-            </td>
-
-        </tr>
-        </tbody>
-    </table>
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<header th:insert="parts/common :: common" ></header>
+    <div class="container">
+        <table class="table table-bordered table-striped">
+            <thead>
+            <br>
+            <tr>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.roles}"></td>
+                <td>
+                    <a th:href="@{/editUser/{id}(id=${user.id})}"  class="btn btn-info ml-2">Edit</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
-</center>
-</body>
 </html>
