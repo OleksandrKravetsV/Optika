@@ -8,11 +8,22 @@
               th:action="@{/update/{id}(id=${product.id})}"
               th:object="${product}"
               >
-            <label for="price">Price</label>
+
+            <div>
+                <td th:if="${product.filename == null }">
+                    <img th:src="@{/images/no_Img.jpg}"/>
+                </td>
+                <td th:if="${product.filename != null }">
+                    <img th:src="@{/img/{filename}(filename = ${product.filename})}">
+                </td>
+            </div>
             <input type="file" name="file" >
+
+            <label for="price">Price</label>
+            <input type="text" th:field="*{productName}" id="price" placeholder="productName">
             <input type="text" th:field="*{price}" id="price" placeholder="Price">
     <!--        <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>-->
-            <label for="description">Deadline</label>
+            <label for="description">Description</label>
             <input type="text" th:field="*{description}" id="description" placeholder="Description">
             <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
             <input type="submit" value="Update product">

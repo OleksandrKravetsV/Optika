@@ -1,6 +1,8 @@
 package com.example.optika.controller;
 
+import com.example.optika.model.BuyOrder;
 import com.example.optika.model.Product;
+import com.example.optika.repository.BuyOrderRepository;
 import com.example.optika.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,6 +22,11 @@ public class ProductController {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private BuyOrderRepository buyOrderRepository;
+
+    BuyOrderController buyOrderController = new BuyOrderController();
+
     @Value("${upload.path}")
     private String uploadPath;
 
@@ -31,8 +38,8 @@ public class ProductController {
     }
 
     @PostMapping("/products")
-    public String addProduct(@RequestParam int price, @RequestParam String description, @RequestParam("file") MultipartFile file) throws IOException {
-        Product product = new Product(price, description);
+    public String addProduct(@RequestParam String productName, @RequestParam int price, @RequestParam String description, @RequestParam("file") MultipartFile file) throws IOException {
+        Product product = new Product(productName, price, description);
 
         saveFile(product, file);
         productRepository.save(product);

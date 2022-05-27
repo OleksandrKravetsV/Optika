@@ -23,6 +23,7 @@
 <!--                <input type="file" name="file" id="customFile">-->
 <!--                <label class="custom-file-label" for="customFile">Choose file</label>-->
         <input type="file" name="file" >
+        <input type="text" name="productName" placeholder="productName" />
         <input type="text" name="price" placeholder="price" />
         <input type="text" name="description" placeholder="Description" />
 <!--        <textarea name="description"></textarea>-->
@@ -36,8 +37,9 @@
         <thead>
         <tr>
             <th></th>
-            <th>price</th>
+            <th>product name</th>
             <th>description</th>
+            <th>price</th>
             <th></th>
         </tr>
         </thead>
@@ -50,10 +52,12 @@
             <td th:if="${product.filename != null }">
                 <img th:src="@{/img/{filename}(filename = ${product.filename})}">
             </td>
-               <td  th:text="${product.price}"></td>
+               <td  th:text="${product.productName}"></td>
             <td th:text="${product.description}"></td>
+            <td  th:text="${product.price}"></td>
             <td>
-                <a  th:href="@{/buy/{id}(id=${product.id})}"  class="btn btn-info ml-2">Buy</a>
+                <a  th:href="@{/orders/{id}(id=${product.id})}"  class="btn btn-info ml-2">Buy</a>
+<!--                <a  th:href="@{/orders}"  class="btn btn-info ml-2">Buy</a>-->
                 <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/edit/{id}(id=${product.id})}"  class="btn btn-info ml-2">Edit</a>
                 <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/deleteProduct(productId=${product.id})}" class="btn btn-danger ml-2">Delete</a>
             </td>

@@ -1,0 +1,24 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<header th:insert="parts/common :: common" ></header>
+<div class="container mt-5">
+
+    <center>
+    <div>
+        <br>
+        <form  method="post">
+            <input type="text" name="phoneNumber" placeholder="введите № телефона" />
+            <input type="text" name="message" placeholder="введите сообщение" />
+            <button type="submit">Добавить</button>
+        </form>
+    </div>
+
+        <div>Список сообщений</div>
+        <div th:each="order : ${orders}" class="alert alert-info mt-2">
+            <td th:text="${order.takeProductName()}">...</td>
+            <td th:text="${order.phoneNumber}">...</td>
+            <td th:text="${order.message}">...</td>
+            <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/deleteOrder(orderId=${order.id})}" class="btn btn-danger ml-2">Delete</a>
+        </div>
+    </center>
+</div>
+</html>

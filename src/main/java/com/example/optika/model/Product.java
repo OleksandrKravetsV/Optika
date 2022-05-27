@@ -12,6 +12,8 @@ public class Product {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
+    private String productName;
+
     private int price;
 
     private String description;
@@ -21,7 +23,8 @@ public class Product {
     public Product() {
     }
 
-    public Product(int price, String description) {
+    public Product(String productName, int price, String description) {
+        this.productName = productName;
         this.price = price;
         this.description = description;
     }
@@ -48,6 +51,14 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public String getFilename() {
