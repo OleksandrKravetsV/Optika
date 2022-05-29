@@ -1,72 +1,72 @@
+<!--&lt;!&ndash;<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">&ndash;&gt;-->
+
+<!--&lt;!&ndash;<head>&ndash;&gt;-->
+<!--&lt;!&ndash;    <title>Homework List</title>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <link rel="stylesheet"&ndash;&gt;-->
+<!--&lt;!&ndash;          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"&ndash;&gt;-->
+<!--&lt;!&ndash;          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"&ndash;&gt;-->
+<!--&lt;!&ndash;          crossorigin="anonymous" />&ndash;&gt;-->
+<!--&lt;!&ndash;</head>&ndash;&gt;-->
+
+<!--&lt;!&ndash;<body>&ndash;&gt;-->
+
 <!--<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">-->
+<!--<header th:insert="parts/common :: common" ></header>-->
+<!--<div class="container mt-5">-->
+<!--    <center>-->
+<!--&lt;!&ndash;    <h1>Product Page</h1>&ndash;&gt;-->
 
-<!--<head>-->
-<!--    <title>Homework List</title>-->
+<!--<div sec:authorize="hasAuthority('ADMIN')">-->
+<!--    <form  method="post" enctype="multipart/form-data">-->
+<!--&lt;!&ndash;                add file&ndash;&gt;-->
+<!--&lt;!&ndash;                <input type="file" name="file" id="customFile">&ndash;&gt;-->
+<!--&lt;!&ndash;                <label class="custom-file-label" for="customFile">Choose file</label>&ndash;&gt;-->
+<!--        <input type="file" name="file" >-->
+<!--        <input type="text" name="productName" placeholder="productName" />-->
+<!--        <input type="text" name="price" placeholder="price" />-->
+<!--        <input type="text" name="description" placeholder="Description" />-->
+<!--&lt;!&ndash;        <textarea name="description"></textarea>&ndash;&gt;-->
+<!--&lt;!&ndash;        <input style="white-space: pre-line" type="text" name="description" placeholder="Description" />&ndash;&gt;-->
+<!--        <button type="submit" class="btn btn-info ml-2">Добавить</button>-->
 
-<!--    <link rel="stylesheet"-->
-<!--          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"-->
-<!--          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"-->
-<!--          crossorigin="anonymous" />-->
-<!--</head>-->
+<!--    </form>-->
+<!--</div>-->
 
-<!--<body>-->
-
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<header th:insert="parts/common :: common" ></header>
-<div class="container mt-5">
-    <center>
-<!--    <h1>Product Page</h1>-->
-
-<div sec:authorize="hasAuthority('ADMIN')">
-    <form  method="post" enctype="multipart/form-data">
-<!--                add file-->
-<!--                <input type="file" name="file" id="customFile">-->
-<!--                <label class="custom-file-label" for="customFile">Choose file</label>-->
-        <input type="file" name="file" >
-        <input type="text" name="productName" placeholder="productName" />
-        <input type="text" name="price" placeholder="price" />
-        <input type="text" name="description" placeholder="Description" />
-<!--        <textarea name="description"></textarea>-->
-<!--        <input style="white-space: pre-line" type="text" name="description" placeholder="Description" />-->
-        <button type="submit" class="btn btn-info ml-2">Добавить</button>
-
-    </form>
-</div>
-
-    <table class="table table-bordered table-striped">
-        <thead>
-        <tr>
-            <th></th>
-            <th>product name</th>
-            <th>description</th>
-            <th>price</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="product : ${products}">
-<!--            <td style="white-space: pre-line"> </td>-->
-            <td th:if="${product.filename == null }">
-                <img th:src="@{/images/no_Img.jpg}"/>
-            </td>
-            <td th:if="${product.filename != null }">
-                <img th:src="@{/img/{filename}(filename = ${product.filename})}">
-            </td>
-               <td  th:text="${product.productName}"></td>
-            <td th:text="${product.description}"></td>
-            <td  th:text="${product.price}"></td>
-            <td>
-                <a  th:href="@{/orders/{id}(id=${product.id})}"  class="btn btn-info ml-2">Buy</a>
-<!--                <a  th:href="@{/orders}"  class="btn btn-info ml-2">Buy</a>-->
-                <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/edit/{id}(id=${product.id})}"  class="btn btn-info ml-2">Edit</a>
-                <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/deleteProduct(productId=${product.id})}" class="btn btn-danger ml-2">Delete</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    </center>
-</div>
-</html>
-
-<!--</body>-->
+<!--    <table class="table table-bordered table-striped">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th></th>-->
+<!--            <th>product name</th>-->
+<!--            <th>description</th>-->
+<!--            <th>price</th>-->
+<!--            <th></th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr th:each="product : ${products}">-->
+<!--&lt;!&ndash;            <td style="white-space: pre-line"> </td>&ndash;&gt;-->
+<!--            <td th:if="${product.filename == null }">-->
+<!--                <img th:src="@{/images/no_Img.jpg}"/>-->
+<!--            </td>-->
+<!--            <td th:if="${product.filename != null }">-->
+<!--                <img th:src="@{/img/{filename}(filename = ${product.filename})}">-->
+<!--            </td>-->
+<!--               <td  th:text="${product.productName}"></td>-->
+<!--            <td th:text="${product.description}"></td>-->
+<!--            <td  th:text="${product.price}"></td>-->
+<!--            <td>-->
+<!--                <a  th:href="@{/orders/{id}(id=${product.id})}"  class="btn btn-info ml-2">Buy</a>-->
+<!--&lt;!&ndash;                <a  th:href="@{/orders}"  class="btn btn-info ml-2">Buy</a>&ndash;&gt;-->
+<!--                <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/edit/{id}(id=${product.id})}"  class="btn btn-info ml-2">Edit</a>-->
+<!--                <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/deleteProduct(productId=${product.id})}" class="btn btn-danger ml-2">Delete</a>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+<!--    </center>-->
+<!--</div>-->
 <!--</html>-->
+
+<!--&lt;!&ndash;</body>&ndash;&gt;-->
+<!--&lt;!&ndash;</html>&ndash;&gt;-->

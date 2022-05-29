@@ -3,6 +3,7 @@
 <div class="container mt-5">
 
     <center>
+
     <div>
         <br>
         <form  method="post">
@@ -12,13 +13,13 @@
         </form>
     </div>
 
-        <div>Список сообщений</div>
-        <div th:each="order : ${orders}" class="alert alert-info mt-2">
-            <td th:text="${order.takeProductName()}">...</td>
-            <td th:text="${order.phoneNumber}">...</td>
-            <td th:text="${order.message}">...</td>
-            <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/deleteOrder(orderId=${order.id})}" class="btn btn-danger ml-2">Delete</a>
-        </div>
+<!--        <div>Список сообщений</div>-->
+<!--        <div th:each="order : ${orders}" class="alert alert-info mt-2">-->
+<!--            <td th:text="${order.takeProductName()}">...</td>-->
+<!--            <td th:text="${order.phoneNumber}">...</td>-->
+<!--            <td th:text="${order.message}">...</td>-->
+<!--            <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/deleteOrder(orderId=${order.id})}" class="btn btn-danger ml-2">Delete</a>-->
+<!--        </div>-->
     </center>
 </div>
 </html>

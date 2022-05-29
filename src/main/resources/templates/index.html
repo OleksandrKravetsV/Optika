@@ -8,38 +8,61 @@
 <!--</head>-->
 <!--<body>-->
 
-    <html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<header th:insert="parts/common :: common" ></header>
+<div class="container mt-5">
     <center>
-    <header th:insert="parts/common :: common" ></header>
+        <!--    <h1>Product Page</h1>-->
 
-<!--        <div sec:authentication="name">-->
-<!--            The value of the "name" property of the authentication object should appear here.-->
-<!--        </div>-->
-<!--    <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>-->
-<!--    <form th:action="@{/logout}" method="post">-->
-<!--        <input type="submit" value="login/logout"/>-->
-<!--    </form>-->
+        <div sec:authorize="hasAuthority('ADMIN')">
+            <form  method="post" enctype="multipart/form-data">
+                <!--                add file-->
+                <!--                <input type="file" name="file" id="customFile">-->
+                <!--                <label class="custom-file-label" for="customFile">Choose file</label>-->
+                <input type="file" name="file" >
+                <input type="text" name="productName" placeholder="productName" />
+                <input type="text" name="price" placeholder="price" />
+                <input type="text" name="description" placeholder="Description" />
+                <!--        <textarea name="description"></textarea>-->
+                <!--        <input style="white-space: pre-line" type="text" name="description" placeholder="Description" />-->
+                <button type="submit" class="btn btn-info ml-2">Добавить</button>
 
-<!--        link pages-->
-<!--    <a sec:authorize="hasAuthority('ADMIN')" href="/user">admin page</a>-->
-<!--    <br>-->
-<!--    <a href="/products">products page</a>-->
+            </form>
+        </div>
 
-<!--        show user role-->
-<!--    <div class="row" sec:authorize="hasAuthority('USER')">-->
-<!--        <div class="col-md-10 col-md-offset-2">-->
-<!--            <h2>User Has Authority USER</h2>-->
-<!--        </div>-->
-<!--    </div>-->
-
-<!--    <div class="row" sec:authorize="hasAuthority('ADMIN')">-->
-<!--        <div class="col-md-10 col-md-offset-2">-->
-<!--            <h2>User Has Authority Admin</h2>-->
-<!--        </div>-->
-<!--    </div>-->
-
-
-</center>
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th></th>
+                <th>product name</th>
+                <th>description</th>
+                <th>price</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product : ${products}">
+                <!--            <td style="white-space: pre-line"> </td>-->
+                <td th:if="${product.filename == null }">
+                    <img th:src="@{/images/no_Img.jpg}"/>
+                </td>
+                <td th:if="${product.filename != null }">
+                    <img th:src="@{/img/{filename}(filename = ${product.filename})}">
+                </td>
+                <td  th:text="${product.productName}"></td>
+                <td th:text="${product.description}"></td>
+                <td  th:text="${product.price}"></td>
+                <td>
+                    <a  th:href="@{/orders/{id}(id=${product.id})}"  class="btn btn-info ml-2">Buy</a>
+                    <!--                <a  th:href="@{/orders}"  class="btn btn-info ml-2">Buy</a>-->
+                    <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/edit/{id}(id=${product.id})}"  class="btn btn-info ml-2">Edit</a>
+                    <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/deleteproduct(productId=${product.id})}" class="btn btn-danger ml-2">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </center>
+</div>
 </html>
 
 

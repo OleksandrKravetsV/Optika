@@ -30,27 +30,29 @@ public class ProductController {
     @Value("${upload.path}")
     private String uploadPath;
 
-    @GetMapping("/products")
+    @GetMapping("/")
     public String main(Model model) {
         Iterable<Product> product = productRepository.findAll();
         model.addAttribute("products", product);
-        return "/products/list_products";
+//        return "/products/list_products";
+        return "index";
     }
 
-    @PostMapping("/products")
+    @PostMapping("/")
     public String addProduct(@RequestParam String productName, @RequestParam int price, @RequestParam String description, @RequestParam("file") MultipartFile file) throws IOException {
         Product product = new Product(productName, price, description);
 
         saveFile(product, file);
         productRepository.save(product);
 
-        return "redirect:/products";
+//        return "redirect:/products";
+        return "redirect:/";
     }
 
-    @GetMapping("/deleteProduct")
+    @GetMapping("/deleteproduct")
     public String deleteHomework(@RequestParam Long productId) {
         productRepository.deleteById(productId);
-        return "redirect:/products";
+        return "redirect:/";
     }
 
     @GetMapping("/edit/{id}")
@@ -65,7 +67,7 @@ public class ProductController {
     public String updateHomeWork(@PathVariable("id") long id, @RequestParam("file") MultipartFile file, Product product) throws IOException {
         saveFile(product, file);
         productRepository.save(product);
-        return "redirect:/products";
+        return "redirect:/";
     }
 
 

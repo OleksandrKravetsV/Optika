@@ -10,21 +10,51 @@
 <div>
 <!--    <a th:href="@{/}">return to main</a>-->
 <!--    <br>-->
-    Login page
+
     <div th:if="${param.error}">
         Invalid username and password.
     </div>
     <div th:if="${param.logout}">
         You have been logged out.
     </div>
+
+<!--    <form th:action="@{/login}" method="post">-->
+<!--        <div><label> User Name : <input type="text" name="username"/> </label></div>-->
+<!--        <div><label> Password: <input type="password" name="password"/> </label></div>-->
+<!--        <div><input type="submit" value="Війти"/></div>-->
+<!--&lt;!&ndash;        <div><input class="btn btn-primary" type="submit" value="Sign In"></div>&ndash;&gt;-->
+<!--    </form>-->
+
     <form th:action="@{/login}" method="post">
-        <div><label> User Name : <input type="text" name="username"/> </label></div>
-        <div><label> Password: <input type="password" name="password"/> </label></div>
-        <div><input type="submit" value="Sign In"/></div>
-<!--        <div><input class="btn btn-primary" type="submit" value="Sign In"></div>-->
+        <div><label class="form-label"> <input type="text" class="form-control" placeholder="User Name" name="username"/> </label></div>
+        <br>
+        <div><label class="form-label"> <input type="password" class="form-control" placeholder="Password" name="password"/> </label></div>
+        <br>
+        <div><input type="submit" value="Війти"/></div>
+        <!--        <div><input class="btn btn-primary" type="submit" value="Sign In"></div>-->
     </form>
+
+<!--    <form th:action="@{/login}" method="post">-->
+<!--        <div class="col-md-2">-->
+<!--            <label for="inputEmail4" class="form-label">Email</label>-->
+<!--            <input type="text" class="form-control" id="inputEmail4">-->
+<!--        </div>-->
+<!--        <br>-->
+<!--        <div class="col-md-2">-->
+<!--            <label for="inputPassword4" class="form-label">Password</label>-->
+<!--            <input type="password" class="form-control" id="inputPassword4">-->
+<!--        </div>-->
+<!--        <div class="col-12">-->
+<!--            <button type="submit" class="btn btn-primary">Sign in</button>-->
+<!--        </div>-->
+<!--    </form>-->
+
+
+
+
 <!--    <a href="/registration">Add new user</a>-->
-    <a  th:href="@{/registration}" class="btn btn-light ml-2">Add new user</a>
+    <br>
+    <a  th:href="@{/registration}" class="btn btn-light ml-2">Реєстрація</a>
 </div>
 </center>
 <!--</body>-->

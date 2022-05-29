@@ -1,0 +1,40 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<header th:insert="parts/common :: common" ></header>
+<div class="container mt-5">
+
+<!--    <div class="container">-->
+<!--        <center>-->
+<!--            <form action="#" method="post" enctype="multipart/form-data"-->
+<!--                  th:action="@{/update/{id}(id=${product.id})}"-->
+<!--                  th:object="${product}"-->
+<!--            >-->
+
+<!--                <div>-->
+<!--                    <td th:if="${product.filename == null }">-->
+<!--                        <img th:src="@{/images/no_Img.jpg}"/>-->
+<!--                    </td>-->
+<!--                    <td th:if="${product.filename != null }">-->
+<!--                        <img th:src="@{/img/{filename}(filename = ${product.filename})}">-->
+<!--                    </td>-->
+<!--                </div>-->
+<!--                <input type="file" name="file" >-->
+
+<!--                <label for="price">Price</label>-->
+<!--                <input type="text" th:field="*{productName}" id="price" placeholder="productName">-->
+<!--                <input type="text" th:field="*{price}" id="price" placeholder="Price">-->
+<!--                &lt;!&ndash;        <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>&ndash;&gt;-->
+<!--                <label for="description">Description</label>-->
+<!--                <input type="text" th:field="*{description}" id="description" placeholder="Description">-->
+<!--                <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>-->
+<!--                <input type="submit" value="Update product">-->
+<!--            </form>-->
+<!--        </center>-->
+<!--    </div>-->
+
+    <center>
+
+        <div>Дякуємо, ваше замовлення укомплектовується.</div>
+
+    </center>
+</div>
+</html>

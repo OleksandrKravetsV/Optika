@@ -21,7 +21,20 @@ public class BuyOrderController {
     @Autowired
     private BuyOrderRepository buyOrderRepository;
 
+    @GetMapping("/orders")
+    public String allOrders(Model model) {
+        Iterable<BuyOrder> order = buyOrderRepository.findAll();
+        model.addAttribute("orders", order);
+        return "/order/orders";
+    }
+
     //сделать отдельную страницу ордеров для админа
+    @GetMapping("/thx")
+    public String thxPage(Model model) {
+//        Iterable<BuyOrder> order = buyOrderRepository.findAll();
+//        model.addAttribute("orders", order);
+        return "/order/thx";
+    }
 
     @GetMapping("/orders/{id}")
     public String getAllOrders(Model model) {
@@ -37,7 +50,7 @@ public class BuyOrderController {
         BuyOrder buyOrder = new BuyOrder(phoneNumber, message, product);
         buyOrderRepository.save(buyOrder);
 
-        return "redirect:/products";
+        return "redirect:/thx";
     }
 
 
@@ -48,7 +61,7 @@ public class BuyOrderController {
     @GetMapping("/deleteOrder")
     public String deleteBueOrder(@RequestParam Long orderId) {
         buyOrderRepository.deleteById(orderId);
-        return "redirect:/products";
+        return "redirect:/";
     }
 
 
