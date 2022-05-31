@@ -3,7 +3,6 @@ package com.example.optika.controller;
 import com.example.optika.model.Role;
 import com.example.optika.model.User;
 import com.example.optika.repository.UserRepo;
-import com.example.optika.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;

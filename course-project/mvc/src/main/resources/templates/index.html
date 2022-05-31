@@ -3,7 +3,7 @@
 <div class="container mt-5">
     <center>
         <div class="container  mt-3">
-            <form th:action="@{/}" th:object="${product}" method="post" enctype="multipart/form-data">
+            <form sec:authorize="hasAuthority('ADMIN')" th:action="@{/}" th:object="${product}" method="post" enctype="multipart/form-data">
                 <input  type="file" name="file">
                 <br>
                 <br>
@@ -24,11 +24,11 @@
         <table class="table table-bordered table-striped">
             <thead>
             <tr>
-                <th></th>
-                <th>product name</th>
-                <th>description</th>
-                <th>price</th>
-                <th></th>
+<!--                <th></th>-->
+<!--                <th>product name</th>-->
+<!--                <th>description</th>-->
+<!--                <th>price</th>-->
+<!--                <th></th>-->
             </tr>
             </thead>
             <tbody>

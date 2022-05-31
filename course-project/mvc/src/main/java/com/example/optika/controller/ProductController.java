@@ -1,8 +1,6 @@
 package com.example.optika.controller;
 
-import com.example.optika.model.BuyOrder;
 import com.example.optika.model.Product;
-import com.example.optika.repository.BuyOrderRepository;
 import com.example.optika.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
