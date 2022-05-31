@@ -1,61 +1,24 @@
-<!--<!DOCTYPE html>-->
-<!--<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">-->
-<!--<head>-->
-<!--    <title>Spring Security Example </title>-->
-<!--</head>-->
-<!--<body>-->
-<!--<center>-->
 <header th:insert="parts/common :: common" ></header>
 <center>
-<div>
-<!--    <a th:href="@{/}">return to main</a>-->
-<!--    <br>-->
-
-    <div th:if="${param.error}">
-        Invalid username and password.
+    Login page
+    <div class="container mt-3">
+        <div class="alert alert-danger" role="alert" th:if="${param.error}">
+            Invalid username and password.
+        </div>
+        <div class="alert alert-info" role="alert" th:if="${param.logout}">
+            You have been logged out.
+        </div>
     </div>
-    <div th:if="${param.logout}">
-        You have been logged out.
+
+    <div class="container mt-3">
+        <form th:action="@{/login}" method="post">
+            <div><label class="form-label"> <input type="text" class="form-control" placeholder="User Name" name="username"/> </label></div>
+            <br>
+            <div><label class="form-label"> <input type="password" class="form-control" placeholder="Password" name="password"/> </label></div>
+            <br>
+            <div><input class="btn btn-outline-success" type="submit" value="Війти"/></div>
+        </form>
     </div>
-
-<!--    <form th:action="@{/login}" method="post">-->
-<!--        <div><label> User Name : <input type="text" name="username"/> </label></div>-->
-<!--        <div><label> Password: <input type="password" name="password"/> </label></div>-->
-<!--        <div><input type="submit" value="Війти"/></div>-->
-<!--&lt;!&ndash;        <div><input class="btn btn-primary" type="submit" value="Sign In"></div>&ndash;&gt;-->
-<!--    </form>-->
-
-    <form th:action="@{/login}" method="post">
-        <div><label class="form-label"> <input type="text" class="form-control" placeholder="User Name" name="username"/> </label></div>
-        <br>
-        <div><label class="form-label"> <input type="password" class="form-control" placeholder="Password" name="password"/> </label></div>
-        <br>
-        <div><input type="submit" value="Війти"/></div>
-        <!--        <div><input class="btn btn-primary" type="submit" value="Sign In"></div>-->
-    </form>
-
-<!--    <form th:action="@{/login}" method="post">-->
-<!--        <div class="col-md-2">-->
-<!--            <label for="inputEmail4" class="form-label">Email</label>-->
-<!--            <input type="text" class="form-control" id="inputEmail4">-->
-<!--        </div>-->
-<!--        <br>-->
-<!--        <div class="col-md-2">-->
-<!--            <label for="inputPassword4" class="form-label">Password</label>-->
-<!--            <input type="password" class="form-control" id="inputPassword4">-->
-<!--        </div>-->
-<!--        <div class="col-12">-->
-<!--            <button type="submit" class="btn btn-primary">Sign in</button>-->
-<!--        </div>-->
-<!--    </form>-->
-
-
-
-
-<!--    <a href="/registration">Add new user</a>-->
     <br>
-    <a  th:href="@{/registration}" class="btn btn-light ml-2">Реєстрація</a>
-</div>
+    <a  th:href="@{/registration}" class="btn btn-success ml-2">Реєстрація</a>
 </center>
-<!--</body>-->
-<!--</html>-->

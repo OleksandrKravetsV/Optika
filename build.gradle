@@ -21,15 +21,16 @@ dependencies {
 
 
     implementation 'org.jetbrains:annotations:23.0.0'
-//    implementation 'org.springframework.boot:spring-boot-starter-validation'
-//    implementation 'org.hibernate.validator:hibernate-validator:6.1.6.Final'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.hibernate.validator:hibernate-validator:6.1.6.Final'
 
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.security:spring-security-test'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-//    // https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity4
-//    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity4:3.0.4.RELEASE'
+    implementation 'org.flywaydb:flyway-core:8.5.11'
+
+
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 }
 

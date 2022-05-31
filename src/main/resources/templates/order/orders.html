@@ -1,28 +1,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <header th:insert="parts/common :: common" ></header>
-<!--<div class="container mt-5">-->
-
-<!--    <center>-->
-<!--        <div>Список сообщений</div>-->
-<!--        <div th:each="order : ${orders}" class="alert alert-info mt-2">-->
-<!--            <td th:text="${order.takeProductName()}">...</td>-->
-<!--            <td th:text="${order.phoneNumber}">...</td>-->
-<!--            <td th:text="${order.message}">...</td>-->
-<!--            <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/deleteOrder(orderId=${order.id})}" class="btn btn-danger ml-2">Delete</a>-->
-<!--        </div>-->
-<!--    </center>-->
-<!--</div>-->
 
 <div class="container mt-5">
     <table class="table table-bordered table-striped">
         <thead>
         <tr>
-<!--            <th></th>-->
             <th>товар</th>
             <th>№ тел.</th>
-            <th>ціна</th>
             <th>повідомлення</th>
-<!--            <th></th>-->
         </tr>
         </thead>
         <tbody>

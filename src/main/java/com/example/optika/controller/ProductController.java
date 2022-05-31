@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
@@ -22,26 +23,32 @@ public class ProductController {
     @Autowired
     private ProductRepository productRepository;
 
-    @Autowired
-    private BuyOrderRepository buyOrderRepository;
-
-    BuyOrderController buyOrderController = new BuyOrderController();
-
     @Value("${upload.path}")
     private String uploadPath;
 
     @GetMapping("/")
-    public String main(Model model) {
-        Iterable<Product> product = productRepository.findAll();
-        model.addAttribute("products", product);
-//        return "/products/list_products";
+    public String main(Model model, Product product) {
+        model.addAttribute("products", productRepository.findAll());
         return "index";
     }
 
-    @PostMapping("/")
-    public String addProduct(@RequestParam String productName, @RequestParam int price, @RequestParam String description, @RequestParam("file") MultipartFile file) throws IOException {
-        Product product = new Product(productName, price, description);
+//    @PostMapping("/")
+//    public String addProduct(@RequestParam String productName, @RequestParam int price, @RequestParam String description, @RequestParam("file") MultipartFile file) throws IOException {
+//        Product product = new Product(productName, price, description);
+//
+//        saveFile(product, file);
+//        productRepository.save(product);
+//
+////        return "redirect:/products";
+//        return "redirect:/";
+//    }
 
+    @PostMapping("/")
+    public String addProduct(@Valid Product product, BindingResult result, @RequestParam("file") MultipartFile file) throws IOException {
+
+        if (result.hasErrors()) {
+            return "index";
+        }
         saveFile(product, file);
         productRepository.save(product);
 
@@ -73,11 +80,6 @@ public class ProductController {
 
     private void saveFile(Product product, @RequestParam("file") MultipartFile file) throws IOException {
         if (file != null && !file.getOriginalFilename().isEmpty()) {
-//            File uploadDir = new File(uploadPath);
-//
-//            if (!uploadDir.exists()) {
-//                uploadDir.mkdir();
-//            }
 
             String uuidFile = UUID.randomUUID().toString();
             String resultFilename = uuidFile + "." + file.getOriginalFilename();

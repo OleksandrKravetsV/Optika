@@ -1,26 +1,29 @@
 
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <header th:insert="parts/common :: common" ></header>
+
+<br>
+<br>
+
+<center>
+Registration
+<div class="container  mt-3">
+
+    <form th:action="@{/registration}" th:object="${user}" method="post">
+        <div div class="mb-3">
+            <label for="username" class="form-label"> <input class="form-control" type="text" th:field="*{username}" id="username" placeholder="User Name"> </label>
+            <span class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+        </div>
         <br>
-        <!--<div th:if="${param.error}">-->
-        <!--    Invalid username and password.-->
-        <!--</div>-->
-        <!--<div th:if="${param.logout}">-->
-        <!--    You have been logged out.-->
-        <!--</div>-->
-    <!--    <label for="message">Message</label>-->
-    <!--    <span th:if="${#fields.hasErrors('message')}" th:errors="*{message}"></span>-->
-    <div class="container">
-        <center>
-        Add new user
-        <form th:action="@{/registration}" method="post">
-            <div><label> User Name : <input type="text" name="username"/> </label></div>
-            <div><label> Password: <input type="password" name="password"/> </label></div>
-    <!--        <div><label> Password: <input type="password2" name="password2"/> </label></div>-->
-    <!--        <span th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{passwordConfirm}"></span>-->
-            <div><input type="submit" value="Sign In"/></div>
-        </form>
-            </center>
-    </div>
+        <div class="mb-3">
+            <label for="password" class="form-label"> <input class="form-control" type="text" th:field="*{password}" id="password" placeholder="Password"> </label>
+            <span class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+        </div>
+        <br>
+        <div><input class="btn btn-outline-success" type="submit" value="Зареєструватися"/></div>
+        <!--        <div><input class="btn btn-primary" type="submit" value="Sign In"></div>-->
+    </form>
+</div>
+</center>
 
 </html>

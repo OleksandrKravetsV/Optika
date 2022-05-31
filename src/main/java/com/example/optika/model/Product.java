@@ -1,21 +1,27 @@
 package com.example.optika.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
+@Table(name = "products")
 public class Product {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
+    @NotBlank(message = "заповніть поле")
     private String productName;
 
-    private int price;
+    @NotNull(message = "заповніть поле")
+    @Min(value = 0)
+    private Integer price;
 
+    @NotEmpty(message = "заповніть поле")
     private String description;
 
     private String filename;
@@ -23,7 +29,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(String productName, int price, String description) {
+    public Product(String productName, Integer price, String description) {
         this.productName = productName;
         this.price = price;
         this.description = description;
@@ -37,11 +43,11 @@ public class Product {
         this.id = id;
     }
 
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 

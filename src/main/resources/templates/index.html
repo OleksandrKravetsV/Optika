@@ -1,31 +1,22 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">-->
-
-<!--    <title>Optika</title>-->
-<!--</head>-->
-<!--<body>-->
-
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <header th:insert="parts/common :: common" ></header>
 <div class="container mt-5">
     <center>
-        <!--    <h1>Product Page</h1>-->
+        <div class="container  mt-3">
+            <form th:action="@{/}" th:object="${product}" method="post" enctype="multipart/form-data">
+                <input  type="file" name="file">
+                <br>
+                <br>
+                    <label for="productName" class="form-label"> <input class="form-control" type="text" th:field="*{productName}" id="productName" placeholder="назва товару"> </label>
+                    <span class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}"></span>
 
-        <div sec:authorize="hasAuthority('ADMIN')">
-            <form  method="post" enctype="multipart/form-data">
-                <!--                add file-->
-                <!--                <input type="file" name="file" id="customFile">-->
-                <!--                <label class="custom-file-label" for="customFile">Choose file</label>-->
-                <input type="file" name="file" >
-                <input type="text" name="productName" placeholder="productName" />
-                <input type="text" name="price" placeholder="price" />
-                <input type="text" name="description" placeholder="Description" />
-                <!--        <textarea name="description"></textarea>-->
-                <!--        <input style="white-space: pre-line" type="text" name="description" placeholder="Description" />-->
-                <button type="submit" class="btn btn-info ml-2">Добавить</button>
+                    <label for="price" class="form-label"> <input class="form-control" type="text" th:field="*{price}" id="price" placeholder="ціна"> </label>
+                    <span class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+
+                    <label for="description" class="form-label"> <input class="form-control" type="text" th:field="*{description}" id="description" placeholder="description"> </label>
+                    <span class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+
+                <button type="submit" class="btn btn-info ml-2">Добавити</button>
 
             </form>
         </div>
@@ -42,7 +33,6 @@
             </thead>
             <tbody>
             <tr th:each="product : ${products}">
-                <!--            <td style="white-space: pre-line"> </td>-->
                 <td th:if="${product.filename == null }">
                     <img th:src="@{/images/no_Img.jpg}"/>
                 </td>
@@ -53,8 +43,7 @@
                 <td th:text="${product.description}"></td>
                 <td  th:text="${product.price}"></td>
                 <td>
-                    <a  th:href="@{/orders/{id}(id=${product.id})}"  class="btn btn-info ml-2">Buy</a>
-                    <!--                <a  th:href="@{/orders}"  class="btn btn-info ml-2">Buy</a>-->
+                    <a  th:href="@{/orders/{id}(id=${product.id})}"  class="btn btn-info ml-2">Замовити</a>
                     <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/edit/{id}(id=${product.id})}"  class="btn btn-info ml-2">Edit</a>
                     <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/deleteproduct(productId=${product.id})}" class="btn btn-danger ml-2">Delete</a>
                 </td>
@@ -64,17 +53,3 @@
     </center>
 </div>
 </html>
-
-
-<!--&lt;!&ndash; Optional JavaScript; choose one of the two! &ndash;&gt;-->
-
-<!--&lt;!&ndash; Option 1: Bootstrap Bundle with Popper &ndash;&gt;-->
-<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>-->
-
-<!--&lt;!&ndash; Option 2: Separate Popper and Bootstrap JS &ndash;&gt;-->
-<!--&lt;!&ndash;-->
-<!--<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>-->
-<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>-->
-<!--&ndash;&gt;-->
-<!--</body>-->
-<!--</html>-->

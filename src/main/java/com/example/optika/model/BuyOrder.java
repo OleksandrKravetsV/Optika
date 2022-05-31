@@ -2,7 +2,6 @@ package com.example.optika.model;
 
 import javax.persistence.*;
 
-
 @Entity
 @Table(name = "orders")
 public class BuyOrder {
@@ -11,29 +10,24 @@ public class BuyOrder {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private int phoneNumber;
+    private Long phoneNumber;
     private String message;
 
-//    cascade = CascadeType.ALL,
-    // targetEntity = BuyOrder.class,
     @OneToOne(fetch = FetchType.EAGER, orphanRemoval = false)
-    //cascade = CascadeType.REMOVE, orphanRemoval = true прт удалении с /ордерс удаляет и продукт...
+
     @JoinColumn(name = "product_id")
-    //попробывать удалить связку и добавлять имя через метод takeProductName
-//    @Transient
     private Product buy;
 
     public BuyOrder() {
     }
 
-    public BuyOrder(int phoneNumber, String message, Product product) {
+    public BuyOrder(Long phoneNumber, String message, Product product) {
         this.buy = product;
         this.phoneNumber = phoneNumber;
         this.message = message;
     }
 
     public String takeProductName() {
-//        return buy != null ? buy.getProductName() : "<someDesc>";
         return buy.getProductName();
     }
 
@@ -45,11 +39,11 @@ public class BuyOrder {
         this.id = id;
     }
 
-    public int getPhoneNumber() {
+    public Long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
