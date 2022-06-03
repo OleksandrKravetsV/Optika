@@ -18,7 +18,6 @@ public class Product {
     private String productName;
 
     @NotNull(message = "заповніть поле")
-    @Min(value = 0)
     private Integer price;
 
     @NotEmpty(message = "заповніть поле")

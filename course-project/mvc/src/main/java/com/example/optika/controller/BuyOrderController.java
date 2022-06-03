@@ -36,7 +36,7 @@ public class BuyOrderController {
     }
 
     @PostMapping("/orders/{id}")
-    public String addProduct(@RequestParam Long phoneNumber, @RequestParam String message, Product product)  {
+    public String addBuyOrder(@RequestParam Long phoneNumber, @RequestParam String message, Product product)  {
 
         BuyOrder buyOrder = new BuyOrder(phoneNumber, message, product);
         buyOrderRepository.save(buyOrder);
@@ -45,9 +45,9 @@ public class BuyOrderController {
     }
 
     @GetMapping("/deleteOrder")
-    public String deleteBueOrder(@RequestParam Long orderId) {
+    public String deleteBuyOrder(@RequestParam Long orderId) {
         buyOrderRepository.deleteById(orderId);
-        return "redirect:/";
+        return "redirect:/orders";
     }
 
 }

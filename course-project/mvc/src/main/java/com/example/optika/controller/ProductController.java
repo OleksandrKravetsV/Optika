@@ -30,17 +30,6 @@ public class ProductController {
         return "index";
     }
 
-//    @PostMapping("/")
-//    public String addProduct(@RequestParam String productName, @RequestParam int price, @RequestParam String description, @RequestParam("file") MultipartFile file) throws IOException {
-//        Product product = new Product(productName, price, description);
-//
-//        saveFile(product, file);
-//        productRepository.save(product);
-//
-////        return "redirect:/products";
-//        return "redirect:/";
-//    }
-
     @PostMapping("/")
     public String addProduct(@Valid Product product, BindingResult result, @RequestParam("file") MultipartFile file) throws IOException {
 
@@ -50,12 +39,11 @@ public class ProductController {
         saveFile(product, file);
         productRepository.save(product);
 
-//        return "redirect:/products";
         return "redirect:/";
     }
 
     @GetMapping("/deleteproduct")
-    public String deleteHomework(@RequestParam Long productId) {
+    public String deleteProduct(@RequestParam Long productId) {
         productRepository.deleteById(productId);
         return "redirect:/";
     }
@@ -69,7 +57,7 @@ public class ProductController {
     }
 
     @PostMapping("/update/{id}")
-    public String updateHomeWork(@PathVariable("id") long id, @RequestParam("file") MultipartFile file, Product product) throws IOException {
+    public String updateProduct(@PathVariable("id") long id, @RequestParam("file") MultipartFile file, Product product) throws IOException {
         saveFile(product, file);
         productRepository.save(product);
         return "redirect:/";
