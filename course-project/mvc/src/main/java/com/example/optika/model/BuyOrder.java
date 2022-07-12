@@ -14,7 +14,6 @@ public class BuyOrder {
     private String message;
 
     @OneToOne(fetch = FetchType.EAGER, orphanRemoval = false)
-
     @JoinColumn(name = "product_id")
     private Product buy;
 
