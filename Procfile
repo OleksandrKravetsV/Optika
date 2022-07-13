@@ -1,1 +1,1 @@
-web: java -jar build/libs/Optika.jar
+web: java -jar Optika\course-project\mvc\build\libs\mvc-0.0.1-SNAPSHOT.jar
