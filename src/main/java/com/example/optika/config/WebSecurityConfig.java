@@ -49,7 +49,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring()
                 .antMatchers("/images/**")
                 .antMatchers("/img/**")
-                .antMatchers("/uploads/**")
         ;
     }
 
