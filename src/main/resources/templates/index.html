@@ -24,30 +24,26 @@
         <table class="table table-bordered table-striped">
             <thead>
             <tr>
-<!--                <th></th>-->
-<!--                <th>product name</th>-->
-<!--                <th>description</th>-->
-<!--                <th>price</th>-->
-<!--                <th></th>-->
+
             </tr>
             </thead>
             <tbody>
-            <tr th:each="product : ${products}">
-                <td th:if="${product.filename == null }">
-                    <img th:src="@{/images/no_Img.jpg}"/>
-                </td>
-                <td th:if="${product.filename != null }">
-                    <img th:src="@{/uploads/{filename}(filename = ${product.filename})}">
-                </td>
-                <td  th:text="${product.productName}"></td>
-                <td th:text="${product.description}"></td>
-                <td  th:text="${product.price}"></td>
-                <td>
-                    <a  th:href="@{/orders/{id}(id=${product.id})}"  class="btn btn-info ml-2">Замовити</a>
-                    <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/edit/{id}(id=${product.id})}"  class="btn btn-info ml-2">Edit</a>
-                    <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/deleteproduct(productId=${product.id})}" class="btn btn-danger ml-2">Delete</a>
-                </td>
-            </tr>
+                <tr th:each="product : ${products}">
+                    <td th:if="${product.filename == null }">
+                        <img th:src="@{/images/no_Img.jpg}"/>
+                    </td>
+                    <td th:if="${product.filename != null }">
+                        <img th:src="@{/uploads/{filename}(filename = ${product.filename})}">
+                    </td>
+                    <td  th:text="${product.productName}"></td>
+                    <td th:text="${product.description}"></td>
+                    <td  th:text="${product.price}"></td>
+                    <td>
+                        <a  th:href="@{/orders/{id}(id=${product.id})}"  class="btn btn-info ml-2">Замовити</a>
+                        <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/edit/{id}(id=${product.id})}"  class="btn btn-info ml-2">Edit</a>
+                        <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/deleteproduct(productId=${product.id})}" class="btn btn-danger ml-2">Delete</a>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </center>
