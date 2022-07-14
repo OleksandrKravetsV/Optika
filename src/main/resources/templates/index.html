@@ -33,7 +33,7 @@
                         <img th:src="@{/images/no_Img.jpg}"/>
                     </td>
                     <td th:if="${product.filename != null }">
-                        <img th:src="@{/uploads/{filename}(filename = ${product.filename})}">
+                        <img th:src="@{/img/{filename}(filename = ${product.filename})}">
                     </td>
                     <td  th:text="${product.productName}"></td>
                     <td th:text="${product.description}"></td>
